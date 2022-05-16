@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
 
-const { User, Post, Vote } = require('../../models');
+const { User, Post, Vote, Comment } = require('../../models');
 
 
 //////////////////////////////////////////////////////////////
@@ -96,10 +96,9 @@ router.post('/', (req, res) => {
     // we can pass in key/value pairs where the keys are those defined
     // in our User model
     // this is like writing INSERT INTO users (username, email, password)
-    //                      VALUES ("user", "email", "password");
+    //                      VALUES ("user", "password");
     User.create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     })
     // we update .then callback with session info
@@ -129,7 +128,7 @@ router.post('/login', (req, res) => {
 
         where: {
 
-            email: req.body.email
+            username: req.body.username
         }
     })
         // we take data from findOne() Sequelize method   
@@ -137,7 +136,7 @@ router.post('/login', (req, res) => {
             // if there is no matching email we send 400, bad request
             if (!dbUserData) {
 
-                res.status(400).json({ message: 'No user with that email address!' });
+                res.status(400).json({ message: 'No user with that username!' });
                 
                 return;
 
