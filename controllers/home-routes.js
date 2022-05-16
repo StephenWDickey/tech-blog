@@ -64,7 +64,7 @@ router.get('/', (req, res) => {
             // we must 'serialize' the array of posts for the template
             const posts = dbPostData.map(post => post.get({ plain: true }));
             
-            res.render('homepage', { posts });
+            res.render('homepage', { posts, loggedIn:req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);

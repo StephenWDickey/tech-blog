@@ -1,0 +1,33 @@
+
+
+
+
+{{#if loggedIn}}
+  <!-- handlebars has helpers to perform functions -->
+  <!-- this helper is afor loop, simply write #each -->
+  <!-- it will loop through each object of the specified array -->
+  <!-- the array in this case is posts -->
+ <ol class="post-list">
+  <!-- we can also declare variable name, we name the object |post| -->
+  {{#each posts as |post|}}
+  <li>
+    <article class="post">
+      <div class="title">
+        <a href="{{post.post_url}}" target="_blank">{{post.title}}</a>
+        <span>({{post.post_url}})</span>
+      </div>
+      <div class="meta">
+        {{post.vote_count}} point(s) by {{post.user.username}} on
+        {{post.created_at}}
+        |
+        <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
+      </div>
+    </article>
+  </li>
+    <!-- we end the for loop with a closing tag -->
+ 
+  {{/each}}
+</ol>
+{{else}}
+<h1>You need to login or sign-up to view posts!</h1>
+{{/if}}
