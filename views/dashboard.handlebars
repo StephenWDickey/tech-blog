@@ -24,14 +24,15 @@
     </li>
   </ol>
   {{else}}
-    <h1 class="pt-5 px-5 text-light border-bottom border-light">Looks like you haven't posted anything yet!</h1>
-    
+  <div class="p-5 mx-5">
+    <h1 class="pt-5 text-light border-bottom border-light">Looks like you haven't posted anything yet!</h1>
+  </div>
   {{/each}}
 
 {{else}}
 <div class="p-5">
   <h1 class="text-light pt-5 px-5 border-bottom border-light">You need to login or sign-up to view posts!</h1>
-  <a href="/login" class="mx-5 mt-3 btn btn-primary btn-lg login">Login!</a>
+  <a href="/login" class="mx-5 mt-3 btn btn-dark btn-lg login">Login!</a>
 </div>
 {{/if}}
 
