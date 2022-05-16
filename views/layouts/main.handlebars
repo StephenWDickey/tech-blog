@@ -5,33 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Blog</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
 
     <div class="wrapper">
-        <header>
-            <h1>
-                <a href="/">Tech Blog</a>
-            </h1>
-            <!-- for authentication we are adding a link to the /login endpoint! -->
-
+        <header class="bg-dark">
+            
+            
             {{#if loggedIn}}
-            <nav>
-                <button id="logout" class="logout-btn btn-no-style">logout</button>
-            </nav>
+            <div class="bg-dark navbar">
+                <h1>
+                    <a class="p-2 m-3 bg-light text-dark rounded" href="/">Tech Blog</a>
+                </h1>
+                <nav class="bg-dark float-end">
+                    <a href="/dashboard" class="p-2 m-3 float-right dashboard-btn btn btn-primary btn-lg">My Dashboard</a>
+                </nav>
+                <nav class="float-end" >
+                    <button id="logout" class="p-2 m-3 logout-btn btn btn-danger btn-lg">Logout</button>
+                </nav>
+            </div>
+            {{else}}
+            <div class="bg-dark navbar">
+                <h1>
+                    <a class="p-2 m-3 bg-light text-dark" href="/">Tech Blog</a>
+                </h1>
+                <nav class="bg-dark float-end">
+                    <a href="/dashboard" class="p-2 m-3 float-right dashboard-btn btn btn-primary btn-lg">My Dashboard</a>
+                </nav>
+            </div>
             {{/if}}
             
         </header>
 
-        <main>
+        <main class="bg-info min-vh-100 border">
             {{{ body }}}
         </main>
 
-        <footer>
+        <footer class="mt-auto text-center">
             Thanks for visiting!
         </footer>
     </div>

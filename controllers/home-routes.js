@@ -78,6 +78,56 @@ router.get('/login', (req, res) => {
 });
 
 
+
+router.get('/dashboard', (req, res) => {
+
+
+    // we want to retrive all our posts
+    // on our homepage
+    // we include our comment model and user model
+
+    Post.findAll({
+
+        attributes: [
+            'id',
+            'title',
+            'post_url',
+            'created_at',
+            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
+        where: {
+            'user_id' : `${req.session.user_id}`
+        },
+        include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
+            {
+                model: User,
+                attributes: ['username'],
+                
+            }
+        ]
+    })
+        .then(dbPostData => {
+
+        
+            const posts = dbPostData.map(post => post.get({ plain: true }));
+            
+            res.render('dashboard', { posts, loggedIn:req.session.loggedIn });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+
 /////////////////////////////////////////////////////////
 
 

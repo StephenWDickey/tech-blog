@@ -7,29 +7,37 @@
   <!-- this helper is afor loop, simply write #each -->
   <!-- it will loop through each object of the specified array -->
   <!-- the array in this case is posts -->
- <ol class="post-list">
-  <!-- we can also declare variable name, we name the object |post| -->
-  {{#each posts as |post|}}
-  <li>
-    <article class="post">
-      <div class="title">
-        <a href="{{post.post_url}}" target="_blank">{{post.title}}</a>
-        <span>({{post.post_url}})</span>
-      </div>
-      <div class="meta">
-        {{post.vote_count}} point(s) by {{post.user.username}} on
-        {{post.created_at}}
+ <div class="p-5 mx-5">
+  <h1 class="text-light pt-5 border-bottom border-light">Showing All Posts</h1>
+    <ol class="mt-3 post-list border border-dark bg-light">
+    <!-- we can also declare variable name, we name the object |post| -->
+    {{#each posts as |post|}}
+    <li>
+      <article class="post">
+        <div class="title">
+          <a href="{{post.post_url}}" class="text-dark fw-bold" target="_blank">{{post.title}}</a>
+          <span>({{post.post_url}})</span>
+        </div>
+        <div class="meta">
+          {{post.vote_count}} point(s) by {{post.user.username}} on
+          {{post.created_at}}
         |
-        <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
-      </div>
-    </article>
-  </li>
+          <a href="/post/{{post.id}}" class="text-dark fw-bold">{{post.comments.length}} comment(s)</a>
+        </div>
+      </article>
+    </li>
     <!-- we end the for loop with a closing tag -->
- 
+    </ol>
+  </div>
   {{/each}}
-</ol>
+    
 {{else}}
-<h1>You need to login or sign-up to view posts!</h1>
+<div class="bg-info">
+  <div class="p-5">
+    <h1 class="text-light pt-5 px-5 border-bottom border-light">You need to login or sign-up to view posts!</h1>
+    <a href="/login" class="mx-5 mt-3 btn btn-primary btn-lg login">Login!</a>
+  </div>
+</div>
 {{/if}}
 
 {{#if loggedIn}}

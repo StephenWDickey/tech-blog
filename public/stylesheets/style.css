@@ -1,0 +1,21 @@
+
+
+footer {
+    padding: 50px;
+}
+
+.login-form {
+    padding: 50px;
+}
+
+.signup-form {
+    padding: 50px;
+}
+
+.text-dark.fw-bold.comments-length:hover {
+    color: yellow;
+}
+
+.text-dark.fw-bold.post-title:hover {
+    color: yellow;
+}
