@@ -3,38 +3,43 @@
 
 
 {{#if loggedIn}} 
- 
-  {{#each posts as |post|}}
-  <div class="p-5 mx-5">
+ <div class="p-5 mx-5">
    <h1 class="text-light border-bottom border-light pt-5">Showing Your Posts</h1>
-   <ol class="mt-3 post-list border border-dark bg-light"> 
+   <button class="mx-5 mt-3 btn btn-dark btn-lg addPost">Create a new Post</button>
+   <div class="post-container"> 
+  </div>
+  {{#each posts as |post|}}
+  <div class="border border-dark bg-dark m-5 p-5">
+   <ul class="mt-3 post-list border border-dark bg-light" data-post-id="{{this.id}}"> 
     <li>
       <article class="user-post">
         <div class="title">
-          <a href="{{post.post_content}}" class="text-dark fw-bold post-title" target="_blank">{{post.title}}</a>
-          <span>({{post.post_content}})</span>
+          <h1 class="text-dark fw-bold post-title">{{post.title}}</h1>
+          <p>{{post.post_content}}</p>
         </div>
-        <div class="meta">
+        
+        <div class="meta border-top border-dark">
           {{post.vote_count}} point(s) by {{post.user.username}} on
           {{post.created_at}}
         |
           <a href="/post/{{post.id}}" class="text-dark fw-bold comments-length">{{post.comments.length}} comment(s)</a>
         </div>
+        
       </article>
     </li>
-  </ol>
-  <button class="mx-5 mt-3 btn btn-dark btn-lg addPost">Create a new Post</button>
-  <div class="post-container"> 
-    
+   </ul>
+  <div class="options-container text-light float-end">Click here for more options
   </div>
+  </div>
+  
+  
+  
   {{else}}
   <div class="p-5 mx-5">
-    <h1 class="pt-5 text-light border-bottom border-light">Looks like you haven't posted anything yet!</h1>
+    <h1 class="pt-5 text-light border-bottom border-light">Looks like you haven't posted anything yet!<h1>
+    <p class="text-light border-bottom border-light">Use the Create a new Post button to get started.</p>
   </div>
-  <button class="mx-5 mt-3 btn btn-dark btn-lg addPost">Create a new Post</button>
-  <div class="post-container">
-    
-  </div>
+  
   {{/each}}
 
 {{else}}

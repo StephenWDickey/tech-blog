@@ -19,3 +19,7 @@ footer {
 .text-dark.fw-bold.post-title:hover {
     color: yellow;
 }
+
+.optionsContainer {
+    overflow:hidden;
+}

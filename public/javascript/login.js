@@ -21,7 +21,7 @@ async function loginFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
@@ -59,8 +59,8 @@ async function signupFormHandler(event) {
         });
         // check the response status
         if (response.ok) {
-            window.alert('Account created! Please log in');
-            document.location.replace('/login');
+            
+            document.location.replace('/dashboard');
             
         } else {
             alert(response.statusText);

@@ -80,3 +80,38 @@ document.querySelector('.addPost').addEventListener('click', addPostInputHandler
 
 
 
+function openPostOptions(event) {
+    
+    event.target.innerHTML="";
+    event.target.classList.remove('float-end')
+    event.target.classList.add('overflow-hidden');
+
+    const commentPost = document.createElement('button');
+    commentPost.innerHTML = "Leave a Comment";
+    commentPost.classList.add('btn', 'btn-light', 'btn-large', 'mx-5', 'my-2', 'p-3', 'float-end');
+
+
+    const editPost = document.createElement('button');
+    editPost.innerHTML = "Update this Post";
+    editPost.classList.add('btn', 'btn-success', 'btn-large', 'mx-5', 'my-2', 'p-3', 'float-end');
+
+    const deletePost = document.createElement('button');
+    deletePost.innerHTML = "Delete this Post";
+    deletePost.classList.add('btn', 'btn-danger', 'btn-large', 'mx-5', 'my-2', 'p-3', 'float-end');
+        
+    event.target.appendChild(deletePost);
+    event.target.appendChild(editPost);
+    event.target.appendChild(commentPost);
+    
+}
+
+
+
+const optionsContainers = document.querySelectorAll('.options-container');
+    
+
+for (var i=0; i < optionsContainers.length; i++) {
+    
+    optionsContainers[i].addEventListener('click', openPostOptions, {once:true});
+
+}
