@@ -3,7 +3,6 @@ const router = require('express').Router();
 
 const { User, Post, Vote, Comment } = require('../../models');
 
-
 //////////////////////////////////////////////////////////////
 
 
@@ -44,7 +43,7 @@ router.get('/:id', (req, res) => {
         include:[
             {
                 model: Post,
-                attributes: ['id', 'title', 'post_url', 'created_at']
+                attributes: ['id', 'title', 'post_content', 'created_at']
             },
             {
                 model: Comment,
@@ -109,14 +108,20 @@ router.post('/', (req, res) => {
                 req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
+
+                
     
                 res.json(dbUserData);
             });
+
+            
         })
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
+
+       
 
 });
 
@@ -160,10 +165,14 @@ router.post('/login', (req, res) => {
                 req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
+            
                 
+
                 // if the value is true, we send userData
                 res.json({ user: dbUserData, message: "You are logged in." });
             });
+
+            
 
             
 

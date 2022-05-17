@@ -59,8 +59,8 @@ async function signupFormHandler(event) {
         });
         // check the response status
         if (response.ok) {
-            
-            document.location.replace('/');
+            window.alert('Account created! Please log in');
+            document.location.replace('/login');
             
         } else {
             alert(response.statusText);

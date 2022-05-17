@@ -11,8 +11,8 @@
     <li>
       <article class="user-post">
         <div class="title">
-          <a href="{{post.post_url}}" class="text-dark fw-bold post-title" target="_blank">{{post.title}}</a>
-          <span>({{post.post_url}})</span>
+          <a href="{{post.post_content}}" class="text-dark fw-bold post-title" target="_blank">{{post.title}}</a>
+          <span>({{post.post_content}})</span>
         </div>
         <div class="meta">
           {{post.vote_count}} point(s) by {{post.user.username}} on
@@ -23,9 +23,17 @@
       </article>
     </li>
   </ol>
+  <button class="mx-5 mt-3 btn btn-dark btn-lg addPost">Create a new Post</button>
+  <div class="post-container"> 
+    
+  </div>
   {{else}}
   <div class="p-5 mx-5">
     <h1 class="pt-5 text-light border-bottom border-light">Looks like you haven't posted anything yet!</h1>
+  </div>
+  <button class="mx-5 mt-3 btn btn-dark btn-lg addPost">Create a new Post</button>
+  <div class="post-container">
+    
   </div>
   {{/each}}
 
@@ -39,6 +47,7 @@
 
 {{#if loggedIn}}
 <script src="/javascript/logout.js"></script>
+<script src="/javascript/dashboard.js"></script>
 
 
 {{/if}}

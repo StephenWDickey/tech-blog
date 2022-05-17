@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
         // we pass in our post attributes that we defined in Post.js
         // created_at is auto-generated
         // we use sequelize.literal to count votes, return as vote_count
-        attributes: ['id', 'post_url', 'title', 'created_at', [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
+        attributes: ['id', 'post_content', 'title', 'created_at', [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
 
         // we want to include our User table
         // we have it give us the username attribute from the user table
@@ -62,7 +62,7 @@ router.get('/:id', (req, res) => {
             id: req.params.id
         },
         // sequelize.literal for vote_count
-        attributes: ['id', 'post_url', 'title', 'created_at', [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
+        attributes: ['id', 'post_content', 'title', 'created_at', [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
         // order will allow us to designate how the posts are ordered
         // here we put them in descending order based on creation time
         order: [['created_at', 'DESC']],
@@ -102,11 +102,11 @@ router.get('/:id', (req, res) => {
 
 // POST request for posts/ endpoint
 router.post('/', (req, res) => {
-    // user create method to create post
+    // create method to create post
     Post.create({
         title: req.body.title,
-        post_url: req.body.post_url,
-        user_id: req.body.user_id
+        post_content: req.body.post_content,
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
