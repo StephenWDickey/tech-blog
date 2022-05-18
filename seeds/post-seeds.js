@@ -4,7 +4,7 @@ const postData = [
     {
         title: 'Check out this cool post!',
         
-        post_content: 'This is a very interesting post with lots of info.',
+        post_content: 'This is a very interesting post with lots of info. Did you know you can use ORMs to translate MySQL language with object-oriented programming in JavaScript?',
 
         user_id: 1
     },

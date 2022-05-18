@@ -23,11 +23,15 @@
                     <a class="p-2 m-3 bg-light text-dark rounded" href="/">Tech Blog</a>
                 </h1>
                 <nav class="bg-dark float-end">
+                    <a href="/" class="p-2 m-3 float-right dashboard-btn btn btn-success btn-lg">Homepage</a>
+                </nav>
+                <nav class="bg-dark float-end">
                     <a href="/dashboard" class="p-2 m-3 float-right dashboard-btn btn btn-primary btn-lg">My Dashboard</a>
                 </nav>
                 <nav class="float-end" >
                     <button id="logout" class="p-2 mx-5 logout-btn btn btn-danger btn-lg">Logout</button>
                 </nav>
+                
             </div>
             {{else}}
             <div class="bg-dark navbar">
@@ -35,8 +39,12 @@
                     <a class="p-2 m-3 bg-light text-dark" href="/">Tech Blog</a>
                 </h1>
                 <nav class="bg-dark float-end">
+                    <a href="/" class="p-2 m-3 float-right dashboard-btn btn btn-success btn-lg">Homepage</a>
+                </nav>
+                <nav class="bg-dark float-end">
                     <a href="/login" class="p-2 m-3 float-right dashboard-btn btn btn-primary btn-lg">My Dashboard</a>
                 </nav>
+                
             </div>
             {{/if}}
             

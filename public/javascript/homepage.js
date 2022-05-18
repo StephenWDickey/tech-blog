@@ -12,6 +12,8 @@ function openCommentInputHandler(event) {
 
     optionsContainer.classList.add( 'p-5', 'bg-dark', 'mt-5');
     
+    const commentBtn = document.querySelector('.commentBtn')
+    commentBtn.style.display = 'none';
 
     const commentLabel = document.createElement('label');
     const commentInput = document.createElement('input');
@@ -26,7 +28,7 @@ function openCommentInputHandler(event) {
 
     const postComment = document.createElement('button');
     postComment.innerHTML = "Post your Comment!";
-    postComment.classList.add('btn', 'btn-success', 'btn-large', 'mt-1', 'mx-5');
+    postComment.classList.add('btn', 'btn-light', 'btn-large', 'mt-1', 'mx-5');
     
     optionsContainer.appendChild(commentLabel);
     optionsContainer.appendChild(commentInput);
@@ -78,7 +80,7 @@ function openPostOptions(event) {
 
     const commentPost = document.createElement('button');
     commentPost.innerHTML = "Leave a Comment";
-    commentPost.classList.add('btn', 'btn-light', 'btn-large', 'mx-5', 'my-2', 'p-3', 'float-end');
+    commentPost.classList.add('commentBtn', 'btn', 'btn-light', 'btn-large', 'mx-5', 'my-2', 'p-3', 'float-end');
 
         
     
@@ -119,13 +121,15 @@ async function viewComments(event) {
 
     const postId = post.getAttribute("data-post-id");
 
-    const commentContainerHeader = document.createElement('h3');
+    const commentContainerHeader = document.createElement('p');
 
-    commentContainerHeader.innerHTML = 'Displaying comments!';
+    commentContainerHeader.innerHTML = '--Displaying comments--';
 
-    commentContainerHeader.classList.add("mt-3", 'border-bottom', 'border-dark');
+    commentContainerHeader.classList.add("mt-3");
 
     event.target.appendChild(commentContainerHeader);
+
+    event.target.innerHTML = ""
 
     const response = await fetch ( "http://localhost:3001/api/comments" , {
         method: 'get',
@@ -146,15 +150,22 @@ async function viewComments(event) {
                     // we obtain the comment itself
                     const postComments = commentData[i].comment_text;
                     
-                    const commentUsers = commentData[i].user_id;
+                    console.log (commentData[i].user.username)
 
-                    const commentsContainers = document.createElement('p');
+                    const commenters = commentData[i].user.username;
+
+                    const commenterContainers = document.createElement('p');
+
+                    commenterContainers.innerHTML = '----' + commenters;
+                    commenterContainers.classList.add('mx-5');
+
+                    const commentsContainers = document.createElement('li');
 
                     commentsContainers.innerHTML = postComments;
 
-                    commentsContainers.classList.add('mt-3');
-
                     event.target.appendChild(commentsContainers);
+                    event.target.appendChild(commenterContainers);
+                    
                 
                 }
             }
