@@ -16,16 +16,13 @@ const sequelize = require('../config/connection');
 class Post extends Model {
 
     // static is a javascript keyword
-    // we are creating a 'model method' called upvote()
+    // we are creating a 'model method'
     // parameters are body and models (which will be req.body)
     // models will be an object of the models
-    static upvote(body, models) {
-      return models.Vote.create({
-        user_id: body.user_id,
-        post_id: body.post_id
-      }).then(() => {
-        // find post where vote object was created
+    static createdAt(body, models) {
+      
         return Post.findOne({
+
           where: {
             id: body.post_id
           },
@@ -33,15 +30,10 @@ class Post extends Model {
             'id',
             'post_url',
             'title',
-            'created_at',
-            [
-              // .literal sequelize method allows us to use SQL query
-              sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'),
-              'vote_count'
-            ]
+            'created_at'
           ]
         });
-      });
+      
     }
   }
 

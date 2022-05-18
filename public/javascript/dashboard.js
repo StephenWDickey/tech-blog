@@ -94,6 +94,8 @@ async function deletePostHandler(event) {
 
     const deleteUrl = "http://localhost:3001/api/posts/" + `${postId}`;
 
+    console.log(deleteUrl)
+
     const response = await fetch ( deleteUrl , {
         method: 'delete',
         headers: { 'Content-Type': 'application/json'}
@@ -316,19 +318,22 @@ async function viewComments(event) {
 
     event.preventDefault();
 
+    event.target.closest('.comments-length').classList.remove('bg-success');
+
     const post = event.target.closest("[data-post-id]");
 
     const postId = post.getAttribute("data-post-id");
 
     const commentContainerHeader = document.createElement('p');
 
+
+    event.target.innerHTML = ""
+
     commentContainerHeader.innerHTML = '--Displaying comments--';
 
     commentContainerHeader.classList.add("mt-3");
 
     event.target.appendChild(commentContainerHeader);
-
-    event.target.innerHTML = ""
 
     const response = await fetch ( "http://localhost:3001/api/comments" , {
         method: 'get',
@@ -344,7 +349,7 @@ async function viewComments(event) {
                 // we only want comments that are linked to the post
                 if (commentData[i].post_id == postId) {
 
-                    console.log(commentData[i]);
+                    const createdAt = commentData[i].createdAt;
 
                     // we obtain the comment itself
                     const postComments = commentData[i].comment_text;
@@ -355,7 +360,7 @@ async function viewComments(event) {
 
                     const commenterContainers = document.createElement('p');
 
-                    commenterContainers.innerHTML = '----' + commenters;
+                    commenterContainers.innerHTML = '----' + commenters + '----' + 'created at: ' + createdAt;
                     commenterContainers.classList.add('mx-5');
 
                     const commentsContainers = document.createElement('li');

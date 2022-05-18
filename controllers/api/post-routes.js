@@ -4,7 +4,7 @@ const sequelize = require('../../config/connection');
 const router = require('express').Router();
 
 
-const { Post, User, Vote, Comment } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 
 
 ///////////////////////////////////////////////////////
@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
 
         // we pass in our post attributes that we defined in Post.js
         // created_at is auto-generated
-        // we use sequelize.literal to count votes, return as vote_count
-        attributes: ['id', 'post_content', 'title', 'created_at', [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
+        
+        attributes: ['id', 'post_content', 'title', 'created_at'],
 
         // we want to include our User table
         // we have it give us the username attribute from the user table
@@ -61,8 +61,8 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        // sequelize.literal for vote_count
-        attributes: ['id', 'post_content', 'title', 'created_at', [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']],
+        
+        attributes: ['id', 'post_content', 'title', 'created_at'],
         // order will allow us to designate how the posts are ordered
         // here we put them in descending order based on creation time
         order: [['created_at', 'DESC']],
@@ -120,21 +120,6 @@ router.post('/', (req, res) => {
 ////////////////////////////////////////////////////////////
 
 
-
-// create a PUT request for the posts/upvote endpoint!
-// must put this before /:id because Express will think /upvote is an id
-// PUT /api/posts/upvote
-router.put('/upvote', (req, res) => {
-    // create the vote
-    // custom static method created in models/Post.js
-    // we pass in req.body and Vote object as arguments
-    Post.upvote(req.body, { Vote })
-        .then(updatedPostData => res.json(updatedPostData))
-        .catch(err => {
-            console.log(err);
-            res.status(400).json(err);
-        });
-});
 
 // PUT request for posts/:id endpoint
 router.put('/:id', (req, res) => {

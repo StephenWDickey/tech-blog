@@ -1,7 +1,25 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Comment extends Model {}
+class Comment extends Model {
+
+    static createdAt(body, models) {
+      
+        return Comment.findOne({
+
+          where: {
+            id: body.post_id
+          },
+          attributes: [
+            'id',
+            'post_url',
+            'title',
+            'created_at'
+          ]
+        });
+      
+    }
+}
 
 Comment.init(
     {

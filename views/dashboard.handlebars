@@ -23,11 +23,11 @@
             <h3>{{post.post_content}}</h3>
           </div>
         
-          <div class="meta border-top border-dark">
-            {{post.vote_count}} point(s) by {{post.user.username}} on
+          <div class="meta border-top border-dark fw-bold">
+            by {{post.user.username}} on
             {{post.created_at}}
         |
-            <a  class="text-dark fw-bold comments-length">{{post.comments.length}} comment(s) --- click to see more</a>
+            <h3  class="bg-success text-dark fw-bold comments-length">{{post.comments.length}} comment(s) --- click to see more</h3>
             <div class = "comment-container"></div>
           </div>
         

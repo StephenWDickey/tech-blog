@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
 
-const { User, Post, Vote, Comment } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 //////////////////////////////////////////////////////////////
 
@@ -54,14 +54,8 @@ router.get('/:id', (req, res) => {
                     model: Post,
                     attributes: ['title']
                 }
-            },
-            {
-                // now we are going to see the posts that have been voted on
-                model: Post,
-                attributes: ['title'],
-                through: Vote,
-                as: 'voted_posts'
             }
+          
         ],
 
         // now we want to find the one data point that has this value
