@@ -84,7 +84,7 @@ document.querySelector('.addPost').addEventListener('click', addPostInputHandler
 async function deletePostHandler(event) {
     event.preventDefault();
 
-   
+
 
     const post = event.target.closest("[data-post-id]");
 
@@ -118,35 +118,41 @@ function editPostInputHandler(event) {
 
     titleLabel.setAttribute('for', 'titleInput');
     titleLabel.innerHTML='Post Title';
-    titleLabel.classList.add('text-light', 'fw-bold', 'mx-2');
+    titleLabel.classList.add('text-light', 'fw-bold', 'mt-3');
 
     titleInput.setAttribute('type', 'text');
-    titleInput.classList.add('titleInput', 'text-dark', 'fw-bold');
+    titleInput.classList.add('titleInput', 'text-dark', 'fw-bold', 'mt-3', 'mx-3');
 
-    optionsContainer = document.querySelector('.options-container');
-    optionsContainer.classList.add('mt-5', 'p-5', 'bg-dark')
+    const optionsContainer = event.target.closest('div');
+    optionsContainer.classList.add('bg-dark', 'mb-5')
 
-    optionsContainer.appendChild(titleLabel);
-    optionsContainer.appendChild(titleInput);
+
+    const editContainer = optionsContainer.closest('.edit-container');
+
+
+    editContainer.classList.add( 'p-5', 'bg-dark', 'mt-5', 'float-right');
+    
 
     const postContentLabel = document.createElement('label');
     const postInput = document.createElement('input');
 
     postContentLabel.setAttribute('for', 'postInput');
     postContentLabel.innerHTML='Post Content';
-    postContentLabel.classList.add('text-light', 'fw-bold', 'mx-2');
+    postContentLabel.classList.add('text-light', 'fw-bold', 'mt-3', 'ms-5');
+
 
     postInput.setAttribute('type', 'text');
-    postInput.classList.add('text-dark', 'fw-bold');
+    postInput.classList.add('text-dark', 'fw-bold', 'mt-3', 'mx-3');
 
     const editPost = document.createElement('button');
     editPost.innerHTML = "Edit This Post!";
-    editPost.classList.add('btn', 'btn-primary', 'btn-large', 'mx-5', 'my-5');
-
-    optionsContainer.appendChild(postContentLabel);
-    optionsContainer.appendChild(postInput);
-
-    optionsContainer.appendChild(editPost);
+    editPost.classList.add('btn', 'btn-primary', 'btn-large', 'mt-1', 'mx-5');
+    
+    editContainer.appendChild(titleLabel);
+    editContainer.appendChild(titleInput);
+    editContainer.appendChild(postContentLabel);
+    editContainer.appendChild(postInput);
+    editContainer.appendChild(editPost);
 
     async function editPostHandler(event) {
     
