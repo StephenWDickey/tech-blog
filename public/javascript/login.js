@@ -11,7 +11,7 @@ async function loginFormHandler(event) {
     
   
     if (username && password) {
-      const response = await fetch( 'http://localhost:3001/api/users/login', {
+      const response = await fetch( 'https://blooming-inlet-03377.herokuapp.com/api/users/login', {
         method: 'post',
         body: JSON.stringify({
           username,
@@ -48,7 +48,7 @@ async function signupFormHandler(event) {
     //we create a new USER
     if (username && password) {
         // we assign await function to a variable, so we do not have to chain .then methods to fetch
-        const response = await fetch('http://localhost:3001/api/users', {
+        const response = await fetch('https://blooming-inlet-03377.herokuapp.com/api/users', {
             method: 'post',
             body: JSON.stringify({
                 username,

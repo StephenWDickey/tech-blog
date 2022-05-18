@@ -24,7 +24,7 @@ async function viewComments(event) {
 
     event.target.appendChild(commentContainerHeader);
 
-    const response = await fetch ( "http://localhost:3001/api/comments" , {
+    const response = await fetch ( 'https://blooming-inlet-03377.herokuapp.com/api/comments' , {
         method: 'get',
         headers: { 'Content-Type': 'application/json'}
     });

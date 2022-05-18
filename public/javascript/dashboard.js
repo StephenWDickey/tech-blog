@@ -52,7 +52,7 @@ async function addPostInputHandler(event) {
     
         if (title && post_content) {
             // we assign await function to a variable, so we do not have to chain .then methods to fetch
-            const response = await fetch('http://localhost:3001/api/posts', {
+            const response = await fetch('https://blooming-inlet-03377.herokuapp.com/api/posts', {
                 method: 'post',
                 body: JSON.stringify({
                     title,
@@ -92,7 +92,7 @@ async function deletePostHandler(event) {
 
     console.log(postId);
 
-    const deleteUrl = "http://localhost:3001/api/posts/" + `${postId}`;
+    const deleteUrl = 'https://blooming-inlet-03377.herokuapp.com/api/posts/' + `${postId}`;
 
     console.log(deleteUrl)
 
@@ -166,7 +166,7 @@ function editPostInputHandler(event) {
     
         console.log(postId);
     
-        const editUrl = "http://localhost:3001/api/posts/" + `${postId}`;
+        const editUrl = "https://blooming-inlet-03377.herokuapp.com/api/posts/" + `${postId}`;
     
         title = titleInput.value.trim();
 
@@ -245,7 +245,7 @@ function openCommentInputHandler(event) {
         comment_text = commentInput.value.trim();
 
         if( comment_text ) {
-            const response = await fetch ( "http://localhost:3001/api/comments/" , {
+            const response = await fetch ( "https://blooming-inlet-03377.herokuapp.com/api/comments" , {
                 method: 'post',
                 body: JSON.stringify({
                     comment_text,
@@ -335,7 +335,7 @@ async function viewComments(event) {
 
     event.target.appendChild(commentContainerHeader);
 
-    const response = await fetch ( "http://localhost:3001/api/comments" , {
+    const response = await fetch ( "https://blooming-inlet-03377.herokuapp.com/api/comments" , {
         method: 'get',
         headers: { 'Content-Type': 'application/json'}
     });
