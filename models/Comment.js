@@ -48,8 +48,11 @@ Comment.init(
         },
         post_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
+            
             references: {
+                // this did the trick!
+                onDelete: 'set null',
                 model: 'post',
                 key: 'id'
             }

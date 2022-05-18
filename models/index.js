@@ -25,8 +25,10 @@ User.hasMany(Post, {
 // each Post can only have one User, we must define this reverse relationship
 // we use belongsTo method
 Post.belongsTo(User, {
+    allowNull: true,
     // we must reference our foreign key again
     foreignKey: 'user_id',
+    
     onDelete: "cascade"
 });
 
@@ -38,10 +40,16 @@ Post.belongsTo(User, {
 /////////////////////////////////////////////
 
 Comment.belongsTo(User, {
+    
     foreignKey: 'user_id'
 });
 
 Comment.belongsTo(Post, {
+
+    allowNull: true, 
+
+    onDelete: 'cascade',
+    
     foreignKey: 'post_id'
 });
 
@@ -50,7 +58,13 @@ User.hasMany(Comment, {
 });
 
 Post.hasMany(Comment, {
-    foreignKey: 'post_id'
+    
+    foreignKey: 'post_id',
+
+    allowNull: true,
+        
+    onDelete: 'cascade'
+    
 });
 
 

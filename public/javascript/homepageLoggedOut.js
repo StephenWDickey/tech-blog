@@ -40,16 +40,17 @@ async function viewComments(event) {
 
                     const createdAt = commentData[i].createdAt;
 
+                    const createdAtClean = new Date(createdAt);
+
                     // we obtain the comment itself
                     const postComments = commentData[i].comment_text;
                     
-                    console.log (commentData[i].user.username)
 
                     const commenters = commentData[i].user.username;
 
                     const commenterContainers = document.createElement('p');
 
-                    commenterContainers.innerHTML = '----' + commenters + '----' + 'created at: ' + createdAt;
+                    commenterContainers.innerHTML = '----' + commenters + '----' + 'created at: ' + createdAtClean;
                     commenterContainers.classList.add('mx-5');
 
                     const commentsContainers = document.createElement('li');

@@ -44,7 +44,7 @@ Post.init(
     {
         id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
             //***here is our PRIMARY KEY
             primaryKey: true,
             autoIncrement: true
