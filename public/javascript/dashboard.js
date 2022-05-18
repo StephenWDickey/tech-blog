@@ -82,8 +82,8 @@ document.querySelector('.addPost').addEventListener('click', addPostInputHandler
 
 
 async function deletePostHandler(event) {
+    
     event.preventDefault();
-
 
 
     const post = event.target.closest("[data-post-id]");
@@ -130,7 +130,7 @@ function editPostInputHandler(event) {
     const editContainer = optionsContainer.closest('.edit-container');
 
 
-    editContainer.classList.add( 'p-5', 'bg-dark', 'mt-5', 'float-right');
+    editContainer.classList.add( 'p-5', 'bg-dark', 'mt-5');
     
 
     const postContentLabel = document.createElement('label');
