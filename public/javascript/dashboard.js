@@ -331,7 +331,7 @@ async function viewComments(event) {
 
     commentContainerHeader.innerHTML = '--Displaying comments--';
 
-    commentContainerHeader.classList.add("mt-3");
+    commentContainerHeader.classList.add("mt-3", "border-bottom", "border-dark");
 
     event.target.appendChild(commentContainerHeader);
 
@@ -365,7 +365,7 @@ async function viewComments(event) {
                     commenterContainers.innerHTML = '----' + commenters + '----' + 'created at: ' + createdAtClean;
                     commenterContainers.classList.add('mx-5');
 
-                    const commentsContainers = document.createElement('li');
+                    const commentsContainers = document.createElement('p');
 
                     commentsContainers.innerHTML = postComments;
 
