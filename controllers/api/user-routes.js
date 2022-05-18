@@ -12,9 +12,7 @@ router.get('/', (req, res) => {
     // findAll is a method from the Model class of Sequelize
     // it's like saying SELECT * FROM users
     User.findAll({
-        // we pass this into findAll() method
-        // we don't return password info for security
-        attributes: { exclude: ['password']}
+        
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {

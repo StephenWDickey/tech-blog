@@ -26,9 +26,11 @@
           <div class="meta border-top border-dark fw-bold">
             by {{post.user.username}} on
             {{post.created_at}}
-        |
+
+            {{#if post.comments.length}}
             <h3  class="bg-success text-dark fw-bold comments-length">{{post.comments.length}} comment(s) --- click to see more</h3>
             <div class = "comment-container"></div>
+            {{/if}}
           </div>
         
           </article>
