@@ -141,7 +141,8 @@ router.put('/:id', (req, res) => {
     // update method for PUT requests
     Post.update(
         {
-        title: req.body.title
+        title: req.body.title,
+        post_content: req.body.post_content
         },
         {
             where: {
