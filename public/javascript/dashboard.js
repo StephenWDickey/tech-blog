@@ -78,7 +78,34 @@ async function addPostInputHandler(event) {
 
 document.querySelector('.addPost').addEventListener('click', addPostInputHandler);
 
+/////////////////////////////////////////////////////////////////
 
+
+async function deletePostHandler(event) {
+    event.preventDefault();
+
+   
+
+    const post = event.target.closest("[data-post-id]");
+
+    const postId = post.getAttribute("data-post-id");
+
+    console.log(postId);
+
+    const deleteUrl = "http://localhost:3001/api/posts/" + `${postId}`;
+
+    const response = await fetch ( deleteUrl , {
+        method: 'delete',
+        headers: { 'Content-Type': 'application/json'}
+    });
+
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    }
+    else {
+        alert(response.statusText);
+    }
+}
 
 function openPostOptions(event) {
     
@@ -103,6 +130,7 @@ function openPostOptions(event) {
     event.target.appendChild(editPost);
     event.target.appendChild(commentPost);
     
+    deletePost.addEventListener('click', deletePostHandler);
 }
 
 
