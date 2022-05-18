@@ -30,6 +30,7 @@ async function timeoutLogout() {
 // logout after 30 seconds inactivity
 const timeout = setTimeout(timeoutLogout, 30000);
 
-document.onclick.clearTimeout(timeout);
-
+document.onclick = function(){
+    clearTimeout(timeout);
+};
 
