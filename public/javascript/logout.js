@@ -32,6 +32,6 @@ const timeout = setTimeout(timeoutLogout, 30000);
 
 document.onclick = function(){
     clearTimeout(timeout);
-    timeout;
+    setTimeout(timeoutLogout, 30000);
 };
 
